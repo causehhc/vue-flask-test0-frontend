@@ -1,0 +1,45 @@
+<template>
+  <div class="Part1___Wrapper">
+    <el-col :span="8" class="logoWrapper">
+        <el-link href="/" :underline="false">
+          <img src="@/assets/logo.png" class="image_logo">
+          Beta
+        </el-link>
+    </el-col>
+    <el-col :span="8">
+      <el-link href="/" :underline="false">动态</el-link>
+    </el-col>
+    <el-col :span="8">
+      <el-link href="/" :underline="false">分析</el-link>
+    </el-col>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "Part1"
+}
+</script>
+
+<style scoped>
+.Part1___Wrapper{
+  margin-top: 10px;
+  display:flex;
+  text-align: center;
+  justify-content:center;/*主轴上居中*/
+  align-items:center;/*侧轴上居中*/
+}
+.logoWrapper{
+  display:flex;
+  text-align: center;
+  justify-content:center;/*主轴上居中*/
+  align-items:center;/*侧轴上居中*/
+}
+.image_logo{
+  height: 30px;
+  width: 30px;
+  position: absolute;
+  right: 30px;
+  top: -40%;
+}
+</style>

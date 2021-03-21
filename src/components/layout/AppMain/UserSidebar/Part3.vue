@@ -1,12 +1,10 @@
 <template>
-  <div>
-    <p>404 - Not Found</p>
-  </div>
+  <div>符</div>
 </template>
 
 <script>
 export default {
-  name: "NotFound"
+  name: "Part3"
 }
 </script>
 

@@ -1,12 +1,12 @@
 <template>
   <div>
-    <p>关于</p>
+    404
   </div>
 </template>
 
 <script>
 export default {
-  name: "About"
+  name: "404"
 }
 </script>
 

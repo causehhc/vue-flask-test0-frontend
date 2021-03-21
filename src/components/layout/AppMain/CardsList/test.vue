@@ -1,27 +1,23 @@
 <template>
   <div id="box">
-      <div class="infinite-list" v-infinite-scroll="load" infinite-scroll-disabled="disabled" >
-        <ul class="list" >
-          <li v-for="(i,index) in list" class="list-item" :key="index">
-            {{ i }}
-<!--              <card/>-->
-<!--            sb-->
-          </li>
-        </ul>
-        <p v-if="loading" style="margin-top:10px;" class="loading">
-          <span></span>
-        </p>
-        <p v-if="noMore" style="margin-top:10px;font-size:13px;color:#ccc">
-          没有更多了
-        </p>
-      </div>
+    <div class="box" v-infinite-scroll="load" infinite-scroll-disabled="disabled" >
+      <ul class="list" >
+        <li v-for="(i,index) in list" class="list-item" :key="index">
+          {{ i.postTitle }}
+        </li>
+      </ul>
+      <p v-if="loading" style="margin-top:10px;" class="loading">
+        <span></span>
+      </p>
+      <p v-if="noMore" style="margin-top:10px;font-size:13px;color:#ccc">没有更多了</p>
+    </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
-// import Card from '@/components/Card';
 export default {
+  name: "test",
   data() {
     return {
       count: 0,//起始页数值为0
@@ -49,17 +45,16 @@ export default {
       setTimeout(() => {
         this.count += 1; //页数+1
         this.getMessage(); //调用接口，此时页数+1，查询下一页数据
-      }, 1);
+      }, 500);
     },
     getMessage() {
+      // const path = `http://39.97.120.75/api/random`
+      const path = `http://127.0.0.1:5000/api/info`
       let params = {
         pageNumber: this.count,
         pageSize: 10 //每页查询条数
       };
-      axios.get(
-              "http://39.97.120.75/api/info",
-              params
-          )
+      axios.get(path, params)
           .then(res => {
             console.log(res);
             this.list = this.list.concat(res.data.body.content); //因为每次后端返回的都是数组，所以这边把数组拼接到一起
@@ -80,17 +75,14 @@ export default {
   height: 100%;
   position: absolute;
   overflow-y: auto;
-
 }
-.infinite-list {
+.box {
   width: 100%;
   margin:  0 auto;
-  text-align:center;
 }
 .list {
   padding: 0;
   font-size: 14px;
-
 }
 .list-item {
   width: 100%;
@@ -101,10 +93,9 @@ export default {
   list-style: none;
   padding: 0 1rem;
   box-sizing: border-box;
-  /*height: 20px;*/
+  height: 70px;
   line-height: 70px;
   border-bottom: 1px solid #e7e7e7;
-
 }
 .loading span {
   display: inline-block;
@@ -114,7 +105,6 @@ export default {
   border-left: transparent;
   animation: zhuan 0.5s linear infinite;
   border-radius: 50%;
-
 }
 @keyframes zhuan {
   0% {
