@@ -26,5 +26,6 @@ export default {
 <style scoped>
 .AppMain_Wrapper{
 
+  /*background: #1ff2f2;*/
 }
 </style>

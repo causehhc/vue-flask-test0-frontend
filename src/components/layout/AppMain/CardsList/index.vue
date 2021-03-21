@@ -1,36 +1,34 @@
 <template>
-  <div class="CardsList_Wrapper">
-    <div class="box">
-      <ul class="list" v-infinite-scroll="load" infinite-scroll-disabled="disabled">
-        <li v-for="(i,index) in list" class="list-item" :key="index">
+  <div class="box">
+    <ul class="list" v-infinite-scroll="load" infinite-scroll-disabled="disabled">
+      <li v-for="(i,index) in list" class="list-item" :key="index">
 <!--          i:{{i}}-->
 <!--          index:{{index}}-->
 <!--          <Card/>-->
-          <el-card class="box-card" shadow="hover">
-            <div slot="header" class="clearfix">
-              <span>
-                {{i.postTitle}}
-              </span>
-              <el-button style="float: right; padding: 3px 0" type="text">
-                举报
-              </el-button>
-            </div>
-            <div class="text-item">
-              {{i.postContent}}
-            </div>
-            <div class="img-item">
-              <!--      <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">-->
-              <!--      <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">-->
-            </div>
-          </el-card>
-        </li>
-      </ul>
-      <div class="OtherNote">
-        <p v-if="loading" style="margin-top:10px;" class="loading">
-          <span></span>
-        </p>
-        <p v-if="noMore" style="margin-top:10px;font-size:13px;color:#ccc">没有更多了</p>
-      </div>
+        <el-card class="box-card" shadow="hover">
+          <div slot="header" class="clearfix">
+            <span>
+              {{i.postTitle}}
+            </span>
+            <el-button style="float: right; padding: 3px 0" type="text">
+              举报
+            </el-button>
+          </div>
+          <div class="text-item">
+            {{i.postContent}}
+          </div>
+          <div class="img-item">
+            <!--      <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">-->
+            <!--      <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">-->
+          </div>
+        </el-card>
+      </li>
+    </ul>
+    <div class="OtherNote">
+      <p v-if="loading" style="margin-top:10px;" class="loading">
+        <span></span>
+      </p>
+      <p v-if="noMore" style="margin-top:10px;font-size:13px;color:#ccc">没有更多了</p>
     </div>
   </div>
 </template>
@@ -94,16 +92,10 @@ export default {
 </script>
 
 <style scoped>
-.CardsList_Wrapper{
-  /*width: 100px;*/
-  height: 400px;
-  /*position:absolute;*/
-  overflow-y: auto;
-  background: #1ff2f2;
-}
 .box {
   /*width: 100%;*/
   /*margin:  0 auto;*/
+  /*background: #bfa2f2;*/
 }
 .list {
   padding: 0;

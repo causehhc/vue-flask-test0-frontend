@@ -29,6 +29,5 @@ export default {
   text-align: center;
   /*justify-content:center;!*主轴上居中*!*/
   align-items:center;/*侧轴上居中*/
-
 }
 </style>

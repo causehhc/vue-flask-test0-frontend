@@ -1,16 +1,14 @@
 <template>
-  <div id="box">
-    <div class="box" v-infinite-scroll="load" infinite-scroll-disabled="disabled" >
-      <ul class="list" >
-        <li v-for="(i,index) in list" class="list-item" :key="index">
-          {{ i.postTitle }}
-        </li>
-      </ul>
-      <p v-if="loading" style="margin-top:10px;" class="loading">
-        <span></span>
-      </p>
-      <p v-if="noMore" style="margin-top:10px;font-size:13px;color:#ccc">没有更多了</p>
-    </div>
+  <div class="box" v-infinite-scroll="load" infinite-scroll-disabled="disabled" >
+    <ul class="list" >
+      <li v-for="(i,index) in list" class="list-item" :key="index">
+        {{ i.postTitle }}
+      </li>
+    </ul>
+    <p v-if="loading" style="margin-top:10px;" class="loading">
+      <span></span>
+    </p>
+    <p v-if="noMore" style="margin-top:10px;font-size:13px;color:#ccc">没有更多了</p>
   </div>
 </template>
 
@@ -70,15 +68,10 @@ export default {
 </script>
 
 <style scoped>
-#box{
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  overflow-y: auto;
-}
 .box {
   width: 100%;
   margin:  0 auto;
+  background: #bff2f2;
 }
 .list {
   padding: 0;

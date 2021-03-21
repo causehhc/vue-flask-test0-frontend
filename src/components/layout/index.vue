@@ -28,6 +28,10 @@ name: "index",
 
 }
 .Main_Wrapper{
+  height: 650px;
+  /*height: 100%;*/
+  position:relative;
+  overflow-y: auto;
   background: #eff2f2;
 }
 

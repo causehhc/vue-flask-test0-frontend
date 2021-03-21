@@ -14,5 +14,6 @@ export default {
 body{
   margin:0;
   padding:0;
+  /*background: #eff2f2;*/
 }
 </style>
