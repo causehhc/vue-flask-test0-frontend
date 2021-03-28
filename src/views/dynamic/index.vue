@@ -146,7 +146,11 @@ export default {
 }
 
 .box-card {
-  width: 100%;
+  /*width: 100%;*/
+  /*border-radius: 20px*/
+  position: relative;
+  left: -170px;
+  width: 70%;
   border-radius: 20px
 }
 .img-item{

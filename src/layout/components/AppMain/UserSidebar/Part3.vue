@@ -1,5 +1,5 @@
 <template>
-  <div>符</div>
+  <div></div>
 </template>
 
 <script>

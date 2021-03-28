@@ -31,8 +31,8 @@ export default {
 .Main_Wrapper{
   height: 650px;
   /*height: 100%;*/
-  position:relative;
-  overflow-y: auto;
+  /*position:relative;*/
+  /*overflow-y: hidden;*/
   background: #eff2f2;
 }
 
