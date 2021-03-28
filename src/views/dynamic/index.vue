@@ -17,6 +17,9 @@
           <div class="text-item">
             {{i.postContent}}
           </div>
+          <div class="text-item">
+            {{i.postSummer}}
+          </div>
           <div class="img-item">
             <!--      <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">-->
             <!--      <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">-->
@@ -128,13 +131,13 @@ export default {
 }
 
 
-.text {
-  font-size: 14px;
-}
+/*.text {*/
+/*  font-size: 14px;*/
+/*}*/
 
-.item {
-  margin-bottom: 18px;
-}
+/*.item {*/
+/*  margin-bottom: 18px;*/
+/*}*/
 
 .clearfix:before,
 .clearfix:after {
@@ -157,10 +160,10 @@ export default {
   margin-left: 10px;
 }
 
-.image {
-  /*width: 100%;*/
-  margin-top: 5px;
-  margin-right: 5px;
-  border-radius: 10px
-}
+/*.image {*/
+/*  !*width: 100%;*!*/
+/*  margin-top: 5px;*/
+/*  margin-right: 5px;*/
+/*  border-radius: 10px*/
+/*}*/
 </style>
