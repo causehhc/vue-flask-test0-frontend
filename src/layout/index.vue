@@ -16,6 +16,7 @@ import Navbar from "./components/Navbar";
 import AppMain from "./components/AppMain";
 export default {
   name: "index",
+  // eslint-disable-next-line vue/no-unused-components
   components: {AppMain, Navbar}
 }
 </script>

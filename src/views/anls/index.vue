@@ -1,5 +1,6 @@
 <template>
-  <div class="cardList-container">
+  <div class="anls-container">
+    anls
     <ul class="list" v-infinite-scroll="fetchData" infinite-scroll-disabled="disabled">
       <li v-for="(i,index) in list" class="list-item" :key="index">
         <!--          i:{{i}}-->
@@ -33,7 +34,7 @@
 </template>
 
 <script>
-import { getList } from '@/api/cardList'
+import { getList } from '@/api/anls'
 export default {
   name: "index",
   data() {
@@ -61,8 +62,9 @@ export default {
       this.listLoading = true
       setTimeout(() => {
         this.count += 1;
-        getList().then(response => {
-          console.log(response);
+        getList({
+          count: this.count,
+        }).then(response => {
           this.list = this.list.concat(response.body.content); //因为每次后端返回的都是数组，所以这边把数组拼接到一起
           this.totalPages = response.body.totalPages;
           this.listLoading = false
@@ -74,7 +76,7 @@ export default {
 </script>
 
 <style scoped>
-.cardList-container {
+.anls-container {
   /*width: 100%;*/
   /*margin:  0 auto;*/
   /*background: #bfa2f2;*/

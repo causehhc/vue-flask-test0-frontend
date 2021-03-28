@@ -1,15 +1,15 @@
 <template>
-  <div class="box">
-    <ul class="list" v-infinite-scroll="load" infinite-scroll-disabled="disabled">
+  <div class="dynamic-container">
+    dynamic
+    <ul class="list" v-infinite-scroll="fetchData" infinite-scroll-disabled="disabled">
       <li v-for="(i,index) in list" class="list-item" :key="index">
-<!--          i:{{i}}-->
-<!--          index:{{index}}-->
-<!--          <Card/>-->
+        <!--          i:{{i}}-->
+        <!--          index:{{index}}-->
         <el-card class="box-card" shadow="hover">
           <div slot="header" class="clearfix">
-            <span>
-              {{i.postTitle}}
-            </span>
+          <span>
+            {{i.postTitle}}
+          </span>
             <el-button style="float: right; padding: 3px 0" type="text">
               举报
             </el-button>
@@ -25,7 +25,7 @@
       </li>
     </ul>
     <div class="OtherNote">
-      <p v-if="loading" style="margin-top:10px;" class="loading">
+      <p v-if="listLoading" style="margin-top:10px;" class="listLoading">
         <span></span>
       </p>
       <p v-if="noMore" style="margin-top:10px;font-size:13px;color:#ccc">没有更多了</p>
@@ -34,16 +34,13 @@
 </template>
 
 <script>
-import axios from 'axios'
-import Card from "./Card";
+import { getList } from '@/api/dynamic'
 export default {
   name: "index",
-  // eslint-disable-next-line vue/no-unused-components
-  components: {Card},
   data() {
     return {
       count: 0,//起始页数值为0
-      loading: false,
+      listLoading: false,
       totalPages: "",//取后端返回内容的总页数
       list: [] //后端返回的数组
     };
@@ -54,45 +51,30 @@ export default {
       return this.count >= this.totalPages - 1;
     },
     disabled() {
-      return this.loading || this.noMore;
+      return this.listLoading || this.noMore;
     }
   },
   created() {
-    this.getMessage();
+    this.fetchData()
   },
   methods: {
-    load() {
-      //滑到底部时进行加载
-      this.loading = true;
+    fetchData() {
+      this.listLoading = true
       setTimeout(() => {
-        this.count += 1; //页数+1
-        this.getMessage(); //调用接口，此时页数+1，查询下一页数据
-      }, 500);
-    },
-    getMessage() {
-      // const path = `http://39.97.120.75/api/random`
-      const path = `http://127.0.0.1:5000/api/info`
-      let params = {
-        pageNumber: this.count,
-        pageSize: 10 //每页查询条数
-      };
-      axios.get(path, params)
-        .then(res => {
-          console.log(res);
-          this.list = this.list.concat(res.data.body.content); //因为每次后端返回的都是数组，所以这边把数组拼接到一起
-          this.totalPages = res.data.body.totalPages;
-          this.loading = false;
-        })
-        .catch(err => {
-          console.log(err);
+        this.count += 1;
+        getList().then(response => {
+          this.list = this.list.concat(response.body.content); //因为每次后端返回的都是数组，所以这边把数组拼接到一起
+          this.totalPages = response.body.totalPages;
+          this.listLoading = false
         });
+      }, 10)
     }
   }
 }
 </script>
 
 <style scoped>
-.box {
+.dynamic-container {
   /*width: 100%;*/
   /*margin:  0 auto;*/
   /*background: #bfa2f2;*/
@@ -128,14 +110,14 @@ export default {
   text-align: center;
 }
 .loading span {
-   display: inline-block;
-   width: 20px;
-   height: 20px;
-   border: 2px solid #409eff;
-   border-left: transparent;
-   animation: zhuan 0.5s linear infinite;
-   border-radius: 50%;
- }
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #409eff;
+  border-left: transparent;
+  animation: zhuan 0.5s linear infinite;
+  border-radius: 50%;
+}
 @keyframes zhuan {
   0% {
     transform: rotate(0);

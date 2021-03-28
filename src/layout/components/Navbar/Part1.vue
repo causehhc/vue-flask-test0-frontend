@@ -1,16 +1,19 @@
 <template>
   <div class="Part1___Wrapper">
-    <el-col :span="8" class="logoWrapper">
+    <el-col :span="6" class="logoWrapper">
         <el-link href="/" :underline="false">
           <img src="@/assets/logo.png" class="image_logo">
           Beta
         </el-link>
     </el-col>
-    <el-col :span="8">
-      <el-link href="/" :underline="false">动态</el-link>
+    <el-col :span="6">
+      <el-link href="/dynamic" :underline="false">动态</el-link>
     </el-col>
-    <el-col :span="8">
-      <el-link href="/" :underline="false">分析</el-link>
+    <el-col :span="6">
+      <el-link href="/export" :underline="false">发现</el-link>
+    </el-col>
+    <el-col :span="6">
+      <el-link href="/anls" :underline="false">分析</el-link>
     </el-col>
   </div>
 </template>
