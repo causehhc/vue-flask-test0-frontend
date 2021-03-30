@@ -36,10 +36,12 @@ const actions = {
         username: username.trim(),
         password: password,
       }).then(response => {
-        // 请求登录接口成功以后
         const { data } = response
+        // 请求登录接口成功以后
+        console.log(response)
         commit('SET_TOKEN', data.token)  //vuex保存token，可方便在其他页面中获取到token
         setToken(data.token)  // 在auth中封装的方法，用于将token存储在cookie中
+        console.log(getToken())
         resolve()
       }).catch(error => {
         reject(error)
@@ -52,7 +54,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       getInfo(state.token).then(response => {
         const { data } = response
-
+        console.log(response)
         if (!data) {
           return reject('Verification failed, please Login again.')
         }

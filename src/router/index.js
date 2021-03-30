@@ -4,7 +4,6 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 /* Layout */
-// eslint-disable-next-line no-unused-vars
 import Layout from '@/layout'
 
 /**
@@ -47,9 +46,14 @@ export const constantRoutes = [
         path: '/',
         component: Layout,
         redirect: '/dynamic',
+    },
+
+    {
+        path: '/dynamic',
+        component: Layout,
         children: [
             {
-                path: 'dynamic',
+                path: '/dynamic',
                 name: 'Dynamic',
                 component: () => import('@/views/dynamic/index'),
                 meta: { title: 'Dynamic', icon: 'dynamic' }

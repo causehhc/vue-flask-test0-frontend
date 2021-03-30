@@ -1,9 +1,9 @@
 import request from '@/utils/request'
 
-export function getList(params) {
+export function getList(data) {
     return request({
         url: '/api/list/dynamic',
-        method: 'get',
-        params
+        method: 'post',
+        data
     })
 }

@@ -17,9 +17,6 @@
           <div class="text-item">
             {{i.postContent}}
           </div>
-          <div class="text-item">
-            {{i.postSummer}}
-          </div>
           <div class="img-item">
             <!--      <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">-->
             <!--      <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">-->
@@ -64,8 +61,16 @@ export default {
     fetchData() {
       this.listLoading = true
       setTimeout(() => {
+        console.log(this.$store.getters.name)
         this.count += 1;
-        getList().then(response => {
+        // this.$store.dispatch('user/getInfo').then(() => {
+        //   console.log('submit!!')
+        // }).catch(() => {
+        //   console.log('error submit!!')
+        // })
+        getList({
+          count: this.count,
+        }).then(response => {
           this.list = this.list.concat(response.body.content); //因为每次后端返回的都是数组，所以这边把数组拼接到一起
           this.totalPages = response.body.totalPages;
           this.listLoading = false
@@ -131,13 +136,13 @@ export default {
 }
 
 
-/*.text {*/
-/*  font-size: 14px;*/
-/*}*/
+.text {
+  font-size: 14px;
+}
 
-/*.item {*/
-/*  margin-bottom: 18px;*/
-/*}*/
+.item {
+  margin-bottom: 18px;
+}
 
 .clearfix:before,
 .clearfix:after {
@@ -160,10 +165,10 @@ export default {
   margin-left: 10px;
 }
 
-/*.image {*/
-/*  !*width: 100%;*!*/
-/*  margin-top: 5px;*/
-/*  margin-right: 5px;*/
-/*  border-radius: 10px*/
-/*}*/
+.image {
+  /*width: 100%;*/
+  margin-top: 5px;
+  margin-right: 5px;
+  border-radius: 10px
+}
 </style>

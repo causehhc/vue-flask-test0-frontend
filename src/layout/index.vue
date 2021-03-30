@@ -12,11 +12,10 @@
 </template>
 
 <script>
-import Navbar from "./components/Navbar";
 import AppMain from "./components/AppMain";
+import Navbar from "./components/Navbar";
 export default {
   name: "index",
-  // eslint-disable-next-line vue/no-unused-components
   components: {AppMain, Navbar}
 }
 </script>

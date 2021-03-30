@@ -62,7 +62,9 @@ export default {
       this.listLoading = true
       setTimeout(() => {
         this.count += 1;
-        getList().then(response => {
+        getList({
+          count: this.count,
+        }).then(response => {
           this.list = this.list.concat(response.body.content); //因为每次后端返回的都是数组，所以这边把数组拼接到一起
           this.totalPages = response.body.totalPages;
           this.listLoading = false

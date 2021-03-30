@@ -6,21 +6,26 @@
           Beta
         </el-link>
     </el-col>
+
     <el-col :span="6">
-      <el-link href="/dynamic" :underline="false">动态</el-link>
+<!--      <el-link href="/dynamic" :underline="false">动态</el-link>-->
+      <router-link to="/dynamic">动态</router-link>
     </el-col>
     <el-col :span="6">
-      <el-link href="/export" :underline="false">发现</el-link>
+<!--      <el-link href="/export" :underline="false">发现</el-link>-->
+      <router-link to="/export">发现</router-link>
     </el-col>
     <el-col :span="6">
-      <el-link href="/anls" :underline="false">分析</el-link>
+<!--      <el-link href="/anls" :underline="false">分析</el-link>-->
+      <router-link to="/anls">分析</router-link>
     </el-col>
   </div>
 </template>
 
 <script>
+
 export default {
-  name: "Part1"
+  name: 'Part1',
 }
 </script>
 
