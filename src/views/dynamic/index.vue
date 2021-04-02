@@ -61,15 +61,10 @@ export default {
     fetchData() {
       this.listLoading = true
       setTimeout(() => {
-        console.log(this.$store.getters.name)
         this.count += 1;
-        // this.$store.dispatch('user/getInfo').then(() => {
-        //   console.log('submit!!')
-        // }).catch(() => {
-        //   console.log('error submit!!')
-        // })
         getList({
           count: this.count,
+          token: this.$store.getters.token
         }).then(response => {
           this.list = this.list.concat(response.body.content); //因为每次后端返回的都是数组，所以这边把数组拼接到一起
           this.totalPages = response.body.totalPages;
