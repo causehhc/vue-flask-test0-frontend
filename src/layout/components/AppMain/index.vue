@@ -1,9 +1,9 @@
 <template>
   <div class="AppMain_Wrapper">
-    <el-col :span="20">
+    <el-col class="router" :span="15">
       <router-view :key="key" />
     </el-col>
-    <el-col :span="4">
+    <el-col class="sidebar" :span="9">
       <UserSidebar/>
     </el-col>
   </div>
@@ -25,5 +25,8 @@ export default {
 </script>
 
 <style scoped>
-
+.AppMain_Wrapper{
+  width: 865px;
+  margin:0 auto;
+}
 </style>

@@ -87,6 +87,19 @@ export const constantRoutes = [
         ]
     },
 
+    {
+        path: '/srcList',
+        component: Layout,
+        children: [
+            {
+                path: '/srcList',
+                name: 'SrcList',
+                component: () => import('@/views/srcList/index'),
+                meta: { title: 'SrcList', icon: 'srcList' }
+            }
+        ]
+    },
+
     // 404 page must be placed at the end !!!
     { path: '*', redirect: '/404', hidden: true }
 ]

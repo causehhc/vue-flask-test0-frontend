@@ -1,10 +1,7 @@
 <template>
   <div class="anls-container">
-    anls
     <ul class="list" v-infinite-scroll="fetchData" infinite-scroll-disabled="disabled">
       <li v-for="(i,index) in list" class="list-item" :key="index">
-        <!--          i:{{i}}-->
-        <!--          index:{{index}}-->
         <el-card class="box-card" shadow="hover">
           <div slot="header" class="clearfix">
           <span>
@@ -18,8 +15,7 @@
             {{i.postContent}}
           </div>
           <div class="img-item">
-            <!--      <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">-->
-            <!--      <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">-->
+            <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">
           </div>
         </el-card>
       </li>
@@ -76,38 +72,29 @@ export default {
 </script>
 
 <style scoped>
-.anls-container {
-  /*width: 100%;*/
-  /*margin:  0 auto;*/
-  /*background: #bfa2f2;*/
-}
 .list {
-  padding: 0;
+  margin: 0 auto;
+  padding-right: 5px;
   font-size: 14px;
 }
 .list-item {
-  /*width: 100%;*/
-  /*display: block;*/
-  /*overflow: hidden;*/
-  /*text-overflow: ellipsis;*/
-  /*white-space: nowrap;*/
   list-style: none;
-  /*padding: 0 1rem;*/
-  /*box-sizing: border-box;*/
-  /*height: 70px;*/
-  /*line-height: 70px;*/
-  /*border-bottom: 5px solid #e7e7e7;*/
-
-  /*position: relative;*/
-  /*width: 100%;*/
-  /*height: 100vh;*/
   display:flex;
   justify-content: center;
-  /*align-items: center;*/
-
   margin-bottom: 18px;
-  /*margin-top: 18px;*/
 }
+.box-card {
+  width: 100%;
+  border-radius: 20px
+}
+
+.image {
+  width: 33%;
+  margin-top: 5px;
+  margin-right: 5px;
+  border-radius: 10px
+}
+
 .OtherNote{
   text-align: center;
 }
@@ -129,15 +116,6 @@ export default {
   }
 }
 
-
-.text {
-  font-size: 14px;
-}
-
-.item {
-  margin-bottom: 18px;
-}
-
 .clearfix:before,
 .clearfix:after {
   display: table;
@@ -145,24 +123,5 @@ export default {
 }
 .clearfix:after {
   clear: both
-}
-
-.box-card {
-  /*width: 100%;*/
-  /*border-radius: 20px*/
-  position: relative;
-  left: -170px;
-  width: 70%;
-  border-radius: 20px
-}
-.img-item{
-  margin-left: 10px;
-}
-
-.image {
-  /*width: 100%;*/
-  margin-top: 5px;
-  margin-right: 5px;
-  border-radius: 10px
 }
 </style>

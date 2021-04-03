@@ -1,18 +1,21 @@
 <template>
-  <div class="dynamic-container">
+  <div class="anls-container">
     <ul class="list" v-infinite-scroll="fetchData" infinite-scroll-disabled="disabled">
       <li v-for="(i,index) in list" class="list-item" :key="index">
         <el-card class="box-card" shadow="hover">
           <div slot="header" class="clearfix">
-          <span>
-            {{i.postTitle}}
-          </span>
-            <el-button style="float: right; padding: 3px 0" type="text">
-              举报
+            <span>
+              {{i.sname}}
+            </span>
+            <el-button
+                size="mini"
+                type="primary"
+                icon="el-icon-plus"
+                @click="handleAdd(i.sid)" circle>
             </el-button>
           </div>
           <div class="text-item">
-            {{i.postContent}}
+            {{i.ssummer}}
           </div>
           <div class="img-item">
             <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">
@@ -30,7 +33,7 @@
 </template>
 
 <script>
-import { getList } from '@/api/dynamic'
+import { getList, addOne } from '@/api/srcList'
 export default {
   name: "index",
   data() {
@@ -60,14 +63,24 @@ export default {
         this.count += 1;
         getList({
           count: this.count,
-          token: this.$store.getters.token
         }).then(response => {
           this.list = this.list.concat(response.body.content); //因为每次后端返回的都是数组，所以这边把数组拼接到一起
           this.totalPages = response.body.totalPages;
           this.listLoading = false
         });
       }, 10)
-    }
+    },
+    handleAdd(sid) {
+      console.log(1);
+      setTimeout(()=>{
+        addOne({
+          token: this.$store.getters.token,
+          sid:sid
+        }).then(response => {
+          console.log(response)
+        });
+      }, 10)
+    },
   }
 }
 </script>

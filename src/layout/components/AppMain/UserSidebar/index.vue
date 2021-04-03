@@ -25,8 +25,8 @@ export default {
 
 <style scoped>
 .UserSidebar_Wrapper{
-  text-align: center;
-  margin-top: 14px;
+  /*text-align: center;*/
+  /*margin-top: 14px;*/
   /*background: #bff2f2;*/
 }
 </style>

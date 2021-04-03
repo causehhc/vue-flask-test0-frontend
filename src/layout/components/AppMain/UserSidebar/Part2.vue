@@ -1,62 +1,83 @@
 <template>
-  <!--  <el-card class="box-card">-->
-  <!--    <div slot="header" class="clearfix">-->
-  <!--      <span style="left: -40px;position: relative">我的世界</span>-->
-  <!--&lt;!&ndash;      <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>&ndash;&gt;-->
-  <!--    </div>-->
-  <!--    <div v-for="o in 4" :key="o" class="text item">-->
-  <!--      <el-link :underline="false" style="font-family:Arial;font-size: large;left: -30px;top: 20px">-->
-  <!--        小明-->
-  <!--      </el-link>-->
-  <!--    </div>-->
-  <!--  </el-card>-->
-  <el-table  @row-click="openDetails"
-
-             :data="tableData"
-             class="box-card"
-             :header-cell-style="{color:'#333',fontFamily:'微软雅黑',fontSize:'16px',fontWeight:'540'}"
-  >
-    <el-table-column
-        prop="date"
-        label="我的世界"
-        width="244">
-      <!--      <template slot-scope="scope">-->
-      <!--        <img  :src="scope.row.img" alt="" style="width: 50px;height: 50px">-->
-      <!--      </template>-->
-      <template slot-scope="scope">
-        <p>{{ scope.row.date}}</p>
-        <p style="position: absolute;top: 30px;font-size: 10px">{{ scope.row.date}}</p>
-        <el-avatar shape="square" :src="scope.row.image" ></el-avatar>
-      </template>
-    </el-table-column>
-  </el-table>
+  <div class="info-warpper">
+    <el-card class="box-card" shadow="never">
+      <el-row class="all-title">
+        <el-col class="title" :span="12">
+          我的世界
+        </el-col>
+        <el-col class="addbutton" :span="12">
+          <router-link to="/srcList">
+            <el-button
+                size="mini"
+                type="primary"
+                icon="el-icon-plus" circle>
+            </el-button>
+          </router-link>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-divider class="el-divider--horizontal"></el-divider>
+      </el-row>
+      <el-row>
+        <el-table class="table-warpper" :data="tableData" :show-header="false">
+          <el-table-column label="1" align="left">
+            <template slot-scope="scope">
+              <router-link to="/sb">{{ scope.row.src_name}}</router-link>
+            </template>
+          </el-table-column>
+          <el-table-column label="2" align="right">
+            <template slot-scope="scope">
+              <el-button
+                  size="mini"
+                  type="danger"
+                  icon="el-icon-minus"
+                  @click="handleDelete(scope.$index, scope.row)" circle></el-button>
+            </template>
+          </el-table-column>
+        </el-table>
+      </el-row>
+    </el-card>
+  </div>
 </template>
 
 <script>
+import { getSrc, deleteOne } from '@/api/userSidebar'
 export default {
+  name: "part2",
+  data() {
+    return {
+      tableData: []
+    }
+  },
+  created() {
+    this.fetchData()
+  },
   methods: {
+    fetchData() {
+      setTimeout(() => {
+        getSrc({
+          token: this.$store.getters.token
+        }).then(response => {
+          this.tableData = this.tableData.concat(response.body.content);
+        });
+      }, 10)
+    },
+    handleDelete(index, row) {
+      setTimeout(() => {
+        deleteOne({
+          token: this.$store.getters.token,
+          index:index,
+          row:row,
+          // eslint-disable-next-line no-unused-vars
+        }).then(response => {
+          this.tableData.splice(index, 1)
+        });
+      }, 10)
+    },
     openDetails (row, event, column) {
       console.log(row, event, column)
       window.location.href="https://hao.360.com/?a1004"
     },
-  },
-  data() {
-    return {
-      tableData: [{
-        date: '2016-05-02',
-        image:"https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
-
-      }, {
-        date: '2016-05-04',
-        image:"https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
-      }, {
-        date: '2016-05-01',
-        image:"https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
-      }, {
-        date: '2016-05-03',
-        image:"https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
-      }]
-    }
   }
 }
 
@@ -64,17 +85,36 @@ export default {
 
 
 <style scoped>
-.box-card{
-  border-radius:10px;
-  width: 280px;
-  position: relative;
-  left: -280px;
-  /*background-color: red;*/
+.info-warpper{
+  list-style: none;
+  display:flex;
+  justify-content: center;
+  margin-bottom: 18px;
+  padding-left: 5px;
+  font-size: 14px;
 }
-.box-card p{
-  font-size: 15px;
-  position:absolute;
-  left: 60px;
-  top:0px;
+.box-card{
+  width: 100%;
+  border-radius: 20px;
+}
+.all-title{
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.title{
+  text-align: left;
+}
+.addbutton{
+  text-align: right;
+}
+.el-divider--horizontal{
+  margin-top: 3px;
+  margin-left: -20px;
+  width: 120%;
+}
+
+.table-warpper{
+  margin-top: -24px;
+
 }
 </style>
