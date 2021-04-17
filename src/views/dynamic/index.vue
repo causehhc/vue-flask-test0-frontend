@@ -3,20 +3,38 @@
     <ul class="list" v-infinite-scroll="fetchData" infinite-scroll-disabled="disabled">
       <li v-for="(i,index) in list" class="list-item" :key="index">
         <el-card class="box-card" shadow="hover">
-          <div slot="header" class="clearfix">
-          <span>
-            {{i.postTitle}}
-          </span>
+          <div slot="header" class="style1">
+            <span>
+              {{i.postSrc}}
+            </span>
             <el-button style="float: right; padding: 3px 0" type="text">
               举报
             </el-button>
           </div>
-          <div class="text-item">
+          <div class="style2">
+            <span>
+              {{i.postTitle}}
+            </span>
+            <el-divider direction="vertical"></el-divider>
+            <span>
+              {{i.postUpdated}}
+            </span>
+          </div>
+          <el-divider ></el-divider>
+          <div class="style3">
             {{i.postContent}}
           </div>
-          <div class="img-item">
-            <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">
+          <div class="style4">
+            <el-button style="float: right; padding: 3px 0" type="text" @click="addLikes(i, i.postID)">
+              一键爱国
+            </el-button>
+            <div v-if="i.postLikes !== '0'" style="float: right; padding: 3px 0" type="text">
+              {{i.postLikes}}
+            </div>
           </div>
+<!--          <div class="img-item">-->
+<!--            <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">-->
+<!--          </div>-->
         </el-card>
       </li>
     </ul>
@@ -30,7 +48,7 @@
 </template>
 
 <script>
-import { getList } from '@/api/dynamic'
+import { getList, postLikes } from '@/api/dynamic'
 export default {
   name: "index",
   data() {
@@ -65,6 +83,16 @@ export default {
           this.list = this.list.concat(response.body.content); //因为每次后端返回的都是数组，所以这边把数组拼接到一起
           this.totalPages = response.body.totalPages;
           this.listLoading = false
+        });
+      }, 10)
+    },
+    addLikes(info, postID) {
+      info.postLikes = parseInt(info.postLikes)+1 ;
+      setTimeout(() => {
+        postLikes({
+          ID: postID
+        }).then(response => {
+          console.log(response.body.data)
         });
       }, 10)
     }
@@ -117,12 +145,12 @@ export default {
   }
 }
 
-.clearfix:before,
-.clearfix:after {
+.style1:before,
+.style1:after {
   display: table;
   content: "";
 }
-.clearfix:after {
+.style1:after {
   clear: both
 }
 </style>

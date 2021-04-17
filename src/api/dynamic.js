@@ -7,3 +7,11 @@ export function getList(data) {
         data
     })
 }
+
+export function postLikes(data) {
+    return request({
+        url: '/api/list/likes',
+        method: 'post',
+        data
+    })
+}

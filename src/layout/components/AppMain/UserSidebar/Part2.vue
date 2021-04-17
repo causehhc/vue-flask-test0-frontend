@@ -2,7 +2,7 @@
   <div class="info-warpper">
     <el-card class="box-card" shadow="never">
       <el-row class="all-title">
-        <el-col class="title" :span="12">
+        <el-col class="style2" :span="12">
           我的世界
         </el-col>
         <el-col class="addbutton" :span="12">
@@ -101,7 +101,7 @@ export default {
   margin-left: 10px;
   margin-right: 10px;
 }
-.title{
+.style2{
   text-align: left;
 }
 .addbutton{

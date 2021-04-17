@@ -3,7 +3,7 @@
     <ul class="list" v-infinite-scroll="fetchData" infinite-scroll-disabled="disabled">
       <li v-for="(i,index) in list" class="list-item" :key="index">
         <el-card class="box-card" shadow="hover">
-          <div slot="header" class="clearfix">
+          <div slot="header" class="style1">
           <span>
             {{i.postTitle}}
           </span>
@@ -14,9 +14,9 @@
           <div class="text-item">
             {{i.postContent}}
           </div>
-          <div class="img-item">
-            <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">
-          </div>
+<!--          <div class="img-item">-->
+<!--            <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">-->
+<!--          </div>-->
         </el-card>
       </li>
     </ul>
@@ -116,12 +116,12 @@ export default {
   }
 }
 
-.clearfix:before,
-.clearfix:after {
+.style1:before,
+.style1:after {
   display: table;
   content: "";
 }
-.clearfix:after {
+.style1:after {
   clear: both
 }
 </style>
