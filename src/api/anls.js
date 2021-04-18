@@ -7,3 +7,11 @@ export function getList(data) {
         data
     })
 }
+
+export function getGraph(data) {
+    return request({
+        url: '/api/list/getGraph',
+        method: 'post',
+        data
+    })
+}
